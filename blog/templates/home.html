@@ -1,0 +1,50 @@
+{% extends "design.html" %}
+{% block content %}
+<style>
+    body{
+    background-image: url('https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    background-size: cover;
+    opacity:1.0;
+    }
+</style>
+<div class="container quotes">
+        <h1 class="text-center"><strong>Refresh</strong> to Auto-generate Quotes</h1>
+    <div class="m-5">
+        <blockquote class="quote-box text-center primary-color">
+            <p class="quotation-mark">
+                "
+            </p>
+            <p class="quote-text">
+                {{quote.quote}}
+            </p>
+            <hr />
+            <div class="blog-post-actions">
+                <p class="blog-post-bottom pull-left">
+                    {{quote.author}}
+                </p>
+            </div>
+        </blockquote>
+    </div>
+<div class="">
+{% for post in posts %}
+<div class="col-md-12">
+        <article>
+                <div class="card m-2 p-4 shadow myshadow">
+                    <div class="card-body">
+                        <div class="">
+                            <a class="mr-2" href="">Posted by : {{ post.author.username }}</a>
+                            <small class="text-muted">Date Posted : {{ post.date_posted.strftime('%Y-%m-%d')}}</small>
+                        </div>
+                        <hr>
+                        <h2><a class="card-title" href="">{{ post.title }}</a></h2>
+                        <p class="card-content">{{ post.content }}</p>
+                        <button class="btn btn-outline-secondary square btn-small" type="button">
+                            <a href="{{url_for('post',post_id=post.id)}}">View Page</a>
+                        </button>
+                    </div>
+                </article>
+</div>
+{% endfor %}
+</div>
+
+{% endblock content %}
